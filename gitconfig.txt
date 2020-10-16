@@ -1,0 +1,108 @@
+[user]
+	name = Erik Hendrickson
+	email = erik_hendrickson@jabil.com
+
+[alias]
+ # Get unmerged commits between two branches. Ex: git c first-branch second-branch
+	c = cherry -v
+
+ # Add all unstaged files and commit. Ex: git cm "My commit message
+	cm = !git add -A && git commit -m
+
+ # Checkout specified branch. Ex: git co my-branch
+	co = checkout
+
+ # Create and checkout new branch. Ex: git co my-new-branch
+	cob = checkout -b
+
+ # Cherry pick given commit to current branch. Ex: git cp commit#
+	cp = cherry-pick
+
+ # Deletes a branch from local
+	d = branch -D
+
+ # Deletes a branch from remote
+	dr = push origin --delete
+
+ # Opens configured diff tool to show differences.
+	dt = difftool
+
+ # Deletes a tag (local)
+ 	dtag = git tag -d  	 
+
+ # Opens this config file in vi.
+	ec = config --global -e
+
+ # Shows a log of all commits on all branches, oneline format
+	lg1 = log --graph --abbrev-commit --decorate --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+
+ # Shows a log of all commits on all branches, detailed format
+	lg2 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n'' %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+
+ # Shows a log of all commits on either the current branch or for the one specified. Ex: lgb another-branch
+	lgb = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n'' %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+
+ # Shows the last commit for all branches
+	lgs = log --graph --oneline --decorate --date=relative --all --color --simplify-by-decoration --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n'' %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+
+ # Calls lg2
+	lg = !git lg2
+
+ # Opens configured merge tool to resolve conflicts
+	mt = mergetool
+
+ # Pushes a local branch upstream
+	pushup = push --set-upstream origin
+
+ # Shows names of changed files for a given commit. Ex: git sf commit#
+	sf = show --name-only
+
+ # Get status of current branch
+	st = status
+
+ # Pulls with rebase and prune, then fecthes to update tracking branches
+	up = !git pull --rebase --prune $@ && git submodule update --init --recursive
+
+ # Creates a local commit to store changes then hard resets the head to preceding commit
+	wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+
+[color "status"]
+	added = green
+	changed = yellow
+	untracked = cyan
+
+[credential]
+	helper = manager
+
+[push]
+	default = simple
+	followtags = true
+
+[core]
+	preloadindex = true
+	fscache = true
+	editor = 'C:\\Program Files\\Microsoft VS Code\\Code.exe' -w
+[gc]
+	auto = 256
+[diff]
+	tool = bc3
+	compactionHeuristic = true
+[difftool "bc3"]
+	path = c:/Program Files/Beyond Compare 4/bcomp.exe
+[difftool "sourcetree"]
+	cmd = 'C:/Program Files/Beyond Compare 4/BComp.exe' \"$LOCAL\" \"$REMOTE\"
+[merge]
+	tool = bc3
+[mergetool "bc3"]
+	path = c:/Program Files/Beyond Compare 4/bcomp.exe
+[mergetool "sourcetree"]
+	cmd = 'C:/Program Files/Beyond Compare 4/BComp.exe' \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
+	trustExitCode = true
+[branch]
+	autosetuprebase = always
